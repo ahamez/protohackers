@@ -26,9 +26,9 @@ COPY --link mix.exs ./
 COPY --link lib lib
 COPY --link rel rel
 
-RUN --mount=type=cache,target=deps,sharing=locked \
-    --mount=type=cache,target=_build,sharing=locked \
-    mix deps.get --only ${MIX_ENV} \
+# RUN --mount=type=cache,target=deps,sharing=locked \
+#     --mount=type=cache,target=_build,sharing=locked \
+RUN    mix deps.get --only ${MIX_ENV} \
     && mix deps.compile \
     && mix compile \
     && mix release \
