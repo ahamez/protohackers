@@ -1,0 +1,3 @@
+# flyctl launch added from .elixir_ls/.gitignore
+.elixir_ls/**/*
+fly.toml
