@@ -20,6 +20,7 @@ defmodule Protohackers.SmokeTest.Accepter do
         packet: :raw,
         active: true,
         reuseaddr: true,
+        # Don't immediately close socket if peer closed its write side.
         exit_on_close: false
       ])
 
