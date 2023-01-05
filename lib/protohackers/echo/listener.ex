@@ -1,5 +1,5 @@
 defmodule Protohackers.Echo.Listener do
-  use GenServer
+  use GenServer, restart: :transient
   require Logger
 
   defmodule State do
