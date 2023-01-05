@@ -38,7 +38,7 @@ defmodule Protohackers.PrimeTime.Accepter do
 
     {:ok, pid} =
       DynamicSupervisor.start_child(
-        Protohackers.PrimeTime.Accepter.DynamicSupervisor,
+        Protohackers.DynamicSupervisor,
         Protohackers.PrimeTime.Listener
       )
 
