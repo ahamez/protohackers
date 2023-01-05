@@ -5,4 +5,4 @@ if config_env() == :prod do
     level: :info
 end
 
-config :protohackers, server: PrimeTime
+config :protohackers, server: Means
