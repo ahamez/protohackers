@@ -7,7 +7,7 @@ defmodule Protohackers.Application do
   def start(_type, _args) do
     children = [
       {DynamicSupervisor, name: Protohackers.DynamicSupervisor},
-      # {Protohackers.Echo.Accepter, [config: [port: 10_000]]}
+      # {Protohackers.SmokeTest.Accepter, [config: [port: 10_000]]}
       {Protohackers.PrimeTime.Accepter, [config: [port: 10_000]]}
     ]
 

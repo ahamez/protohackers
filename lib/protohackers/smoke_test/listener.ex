@@ -1,4 +1,4 @@
-defmodule Protohackers.Echo.Listener do
+defmodule Protohackers.SmokeTest.Listener do
   use GenServer, restart: :transient
   require Logger
 
