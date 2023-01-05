@@ -5,10 +5,16 @@ defmodule Protohackers.Application do
 
   @impl true
   def start(_type, _args) do
+    # server = Application.fetch_env!(:protohackers, :server)
+    server_mod = Module.concat([
+      Protohackers,
+      Application.fetch_env!(:protohackers, :server),
+      Accepter
+      ])
+
     children = [
       {DynamicSupervisor, name: Protohackers.DynamicSupervisor},
-      # {Protohackers.SmokeTest.Accepter, [config: [port: 10_000]]}
-      {Protohackers.PrimeTime.Accepter, [config: [port: 10_000]]}
+      {server_mod, [config: [port: 10_000]]}
     ]
 
     opts = [strategy: :one_for_one, name: Protohackers.Supervisor]
