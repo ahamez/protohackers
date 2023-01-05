@@ -2,17 +2,13 @@ defmodule Protohackers.PrimeTime.Listener do
   use GenServer, restart: :transient
   require Logger
 
-  defmodule State do
-    defstruct []
-  end
-
   def start_link(opts) do
     GenServer.start_link(__MODULE__, [], opts)
   end
 
   @impl true
   def init([]) do
-    {:ok, %State{}}
+    {:ok, :no_state}
   end
 
   @impl true
