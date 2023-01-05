@@ -36,7 +36,7 @@ defmodule Protohackers.Echo.Accepter do
 
     {:ok, pid} =
       DynamicSupervisor.start_child(
-        Protohackers.Echo.Accepter.DynamicSupervisor,
+        Protohackers.DynamicSupervisor,
         Protohackers.Echo.Listener
       )
 
