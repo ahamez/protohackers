@@ -6,10 +6,11 @@ defmodule Protohackers.Application do
   @impl true
   def start(_type, _args) do
     # server = Application.fetch_env!(:protohackers, :server)
-    server_mod = Module.concat([
-      Protohackers,
-      Application.fetch_env!(:protohackers, :server),
-      Accepter
+    server_mod =
+      Module.concat([
+        Protohackers,
+        Application.fetch_env!(:protohackers, :server),
+        Accepter
       ])
 
     children = [

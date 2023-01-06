@@ -7,7 +7,7 @@ defmodule Protohackers.Means.Listener do
   end
 
   defmodule Insert do
-     @enforce_keys [:timestamp, :price]
+    @enforce_keys [:timestamp, :price]
     defstruct [:timestamp, :price]
   end
 
