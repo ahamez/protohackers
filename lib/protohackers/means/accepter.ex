@@ -37,7 +37,7 @@ defmodule Protohackers.Means.Accepter do
     {:ok, pid} =
       DynamicSupervisor.start_child(
         Protohackers.DynamicSupervisor,
-        Protohackers.Means.Listener
+        {Protohackers.Means.Listener, [client_socket: client_socket]}
       )
 
     :ok = :gen_tcp.controlling_process(client_socket, pid)
