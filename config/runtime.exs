@@ -5,4 +5,6 @@ if config_env() == :prod do
     level: :info
 end
 
-config :protohackers, server: Means
+config :protohackers,
+  server: BudgetChat,
+  port: 10_001
