@@ -1,4 +1,4 @@
-defmodule Protohackers.Means.Accepter do
+defmodule Protohackers.BudgetChat.Server do
   use GenServer
   require Logger
 
@@ -17,7 +17,8 @@ defmodule Protohackers.Means.Accepter do
     {:ok, listen_socket} =
       :gen_tcp.listen(config[:port], [
         :binary,
-        packet: :raw,
+        packet: :line,
+        buffer: 1024 * 16,
         active: true,
         reuseaddr: true,
         exit_on_close: false
@@ -37,7 +38,7 @@ defmodule Protohackers.Means.Accepter do
     {:ok, pid} =
       DynamicSupervisor.start_child(
         Protohackers.DynamicSupervisor,
-        {Protohackers.Means.Listener, [client_socket: client_socket]}
+        {Protohackers.BudgetChat.Session, [socket: client_socket]}
       )
 
     :ok = :gen_tcp.controlling_process(client_socket, pid)

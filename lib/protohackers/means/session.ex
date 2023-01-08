@@ -1,4 +1,4 @@
-defmodule Protohackers.Means.Listener do
+defmodule Protohackers.Means.Session do
   use GenServer, restart: :transient
   require Logger
 

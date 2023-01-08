@@ -1,4 +1,4 @@
-defmodule Protohackers.BudgetChat.Listener do
+defmodule Protohackers.BudgetChat.Session do
   use GenServer, restart: :transient
   require Logger
 

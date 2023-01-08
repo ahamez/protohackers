@@ -1,4 +1,4 @@
-defmodule Protohackers.SmokeTest.Accepter do
+defmodule Protohackers.SmokeTest.Server do
   use GenServer
   require Logger
 
@@ -38,7 +38,7 @@ defmodule Protohackers.SmokeTest.Accepter do
     {:ok, pid} =
       DynamicSupervisor.start_child(
         Protohackers.DynamicSupervisor,
-        Protohackers.SmokeTest.Listener
+        Protohackers.SmokeTest.Session
       )
 
     :ok = :gen_tcp.controlling_process(client_socket, pid)

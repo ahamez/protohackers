@@ -1,4 +1,4 @@
-defmodule Protohackers.PrimeTime.Accepter do
+defmodule Protohackers.PrimeTime.Server do
   use GenServer
   require Logger
 
@@ -39,7 +39,7 @@ defmodule Protohackers.PrimeTime.Accepter do
     {:ok, pid} =
       DynamicSupervisor.start_child(
         Protohackers.DynamicSupervisor,
-        Protohackers.PrimeTime.Listener
+        Protohackers.PrimeTime.Session
       )
 
     :ok = :gen_tcp.controlling_process(client_socket, pid)
