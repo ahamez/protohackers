@@ -6,5 +6,5 @@ if config_env() == :prod do
 end
 
 config :protohackers,
-  server: Mob,
+  server: Speed,
   port: 10_000
