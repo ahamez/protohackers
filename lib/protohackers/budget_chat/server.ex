@@ -3,11 +3,13 @@ defmodule Protohackers.BudgetChat.Server do
   require Logger
 
   defmodule State do
-    defstruct [:listen_socket]
+    defstruct [:listen_socket, :dynamic_supervisor]
   end
 
   def start_link(opts \\ []) do
     {config, _opts} = Keyword.pop!(opts, :config)
+
+    {:ok, _pid} = Registry.start_link(name: BudgetChatRegistry, keys: :duplicate)
 
     GenServer.start_link(__MODULE__, config, opts)
   end
@@ -24,7 +26,9 @@ defmodule Protohackers.BudgetChat.Server do
         exit_on_close: false
       ])
 
-    state = %State{listen_socket: listen_socket}
+    {:ok, pid} = DynamicSupervisor.start_link([])
+
+    state = %State{listen_socket: listen_socket, dynamic_supervisor: pid}
 
     {:ok, state, {:continue, :accept}}
   end
@@ -37,7 +41,7 @@ defmodule Protohackers.BudgetChat.Server do
 
     {:ok, pid} =
       DynamicSupervisor.start_child(
-        Protohackers.DynamicSupervisor,
+        state.dynamic_supervisor,
         {Protohackers.BudgetChat.Session, [socket: client_socket]}
       )
 

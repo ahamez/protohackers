@@ -118,7 +118,7 @@ defmodule Protohackers.Speed.Session do
   end
 
   defp handle_message(%Message.Dispatcher{} = dispatcher, %State{type: nil} = state) do
-    Enum.each(dispatcher.roads, &Registry.register(Protohackers.Registry, &1, :dummy))
+    Enum.each(dispatcher.roads, &Registry.register(DispatcherRegistry, &1, :dummy))
 
     {:ok, %State{state | type: dispatcher}}
   end

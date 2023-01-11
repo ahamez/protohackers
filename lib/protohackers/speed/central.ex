@@ -74,7 +74,7 @@ defmodule Protohackers.Speed.Central do
               "New ticket for day #{inspect({day1, day2})} for vehicle #{ticket.plate}"
             )
 
-            case Registry.lookup(Protohackers.Registry, ticket.road) do
+            case Registry.lookup(DispatcherRegistry, ticket.road) do
               [] ->
                 Logger.debug(
                   "No dispatcher to send the ticket to (for vehicle #{ticket.plate} for day #{inspect({day1, day2})})"

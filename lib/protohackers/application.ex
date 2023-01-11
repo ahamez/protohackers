@@ -15,8 +15,6 @@ defmodule Protohackers.Application do
     server_port = Application.get_env(:protohackers, :port, 10_000)
 
     children = [
-      {DynamicSupervisor, [name: Protohackers.DynamicSupervisor]},
-      {Registry, [name: Protohackers.Registry, keys: :duplicate]},
       {server_mod, [config: [port: server_port]]}
     ]
 

@@ -108,7 +108,7 @@ defmodule Protohackers.BudgetChat.Session do
   # -- Private
 
   defp register_client(username) do
-    Registry.register(Protohackers.Registry, :client, username)
+    Registry.register(BudgetChatRegistry, :client, username)
   end
 
   defp broadcast_client_joined(joining_username) do
@@ -124,7 +124,7 @@ defmodule Protohackers.BudgetChat.Session do
   end
 
   defp broadcast(data) do
-    Registry.dispatch(Protohackers.Registry, :client, fn entries ->
+    Registry.dispatch(BudgetChatRegistry, :client, fn entries ->
       for {pid, _username} <- entries, pid != self() do
         send(pid, data)
       end
@@ -133,7 +133,7 @@ defmodule Protohackers.BudgetChat.Session do
 
   defp get_connected_clients(excluded_username) do
     Registry.select(
-      Protohackers.Registry,
+      BudgetChatRegistry,
       [
         {
           # Match pattern

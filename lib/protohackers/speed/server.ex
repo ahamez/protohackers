@@ -3,7 +3,7 @@ defmodule Protohackers.Speed.Server do
   require Logger
 
   defmodule State do
-    defstruct [:listen_socket, :central]
+    defstruct [:listen_socket, :central, :dynamic_supervisor]
   end
 
   def start_link(opts \\ []) do
@@ -24,7 +24,14 @@ defmodule Protohackers.Speed.Server do
       ])
 
     {:ok, central} = GenServer.start_link(Protohackers.Speed.Central, [])
-    state = %State{listen_socket: listen_socket, central: central}
+    {:ok, dynamic_supervisor} = DynamicSupervisor.start_link([])
+    {:ok, _pid} = Registry.start_link(name: DispatcherRegistry, keys: :duplicate)
+
+    state = %State{
+      listen_socket: listen_socket,
+      central: central,
+      dynamic_supervisor: dynamic_supervisor
+    }
 
     {:ok, state, {:continue, :accept}}
   end
@@ -37,7 +44,7 @@ defmodule Protohackers.Speed.Server do
 
     {:ok, pid} =
       DynamicSupervisor.start_child(
-        Protohackers.DynamicSupervisor,
+        state.dynamic_supervisor,
         {Protohackers.Speed.Session, [socket: client_socket, central: state.central]}
       )
 

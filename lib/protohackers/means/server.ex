@@ -3,7 +3,7 @@ defmodule Protohackers.Means.Server do
   require Logger
 
   defmodule State do
-    defstruct [:listen_socket]
+    defstruct [:listen_socket, :dynamic_supervisor]
   end
 
   def start_link(opts \\ []) do
@@ -23,7 +23,9 @@ defmodule Protohackers.Means.Server do
         exit_on_close: false
       ])
 
-    state = %State{listen_socket: listen_socket}
+    {:ok, pid} = DynamicSupervisor.start_link([])
+
+    state = %State{listen_socket: listen_socket, dynamic_supervisor: pid}
 
     {:ok, state, {:continue, :accept}}
   end
@@ -36,7 +38,7 @@ defmodule Protohackers.Means.Server do
 
     {:ok, pid} =
       DynamicSupervisor.start_child(
-        Protohackers.DynamicSupervisor,
+        state.dynamic_supervisor,
         {Protohackers.Means.Session, [client_socket: client_socket]}
       )
 
