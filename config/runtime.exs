@@ -5,6 +5,16 @@ if config_env() == :prod do
     level: :info
 end
 
+server = LineReversal
+
+if server == LineReversal do
+  config :logger, :console,
+    format: "[$level][$metadata] $message\n",
+    metadata: [:session, :acknowledged, :sent, :data_received_pos]
+else
+  config :logger, :console, format: "[$level]$message\n"
+end
+
 config :protohackers,
-  server: Speed,
+  server: server,
   port: 10_000
