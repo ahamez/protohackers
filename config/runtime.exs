@@ -5,14 +5,14 @@ if config_env() == :prod do
     level: :info
 end
 
-server = LineReversal
+server = Insecure
 
 if server == LineReversal do
   config :logger, :console,
     format: "[$level][$metadata] $message\n",
     metadata: [:session, :acknowledged, :sent, :data_received_pos]
 else
-  config :logger, :console, format: "[$level]$message\n"
+  config :logger, :console, format: "[$level] $message\n"
 end
 
 config :protohackers,

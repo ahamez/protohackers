@@ -19,6 +19,9 @@ defmodule Protohackers.MixProject do
   end
 
   defp deps do
-    [{:jason, "~> 1.4"}]
+    [
+      {:jason, "~> 1.4"},
+      {:nx, "~> 0.4"}
+    ]
   end
 end

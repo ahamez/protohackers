@@ -1,3 +1,5 @@
 %{
+  "complex": {:hex, :complex, "0.4.3", "84db4aad241099a8785446ac6eacf498bf3a60634a0e45c7745d875714ddbf98", [:mix], [], "hexpm", "2ceda96ebddcc22697974f1a2666d4cc5dfdd34f8cd8c4f9dced037bcb41eeb5"},
   "jason": {:hex, :jason, "1.4.0", "e855647bc964a44e2f67df589ccf49105ae039d4179db7f6271dfd3843dc27e6", [:mix], [{:decimal, "~> 1.0 or ~> 2.0", [hex: :decimal, repo: "hexpm", optional: true]}], "hexpm", "79a3791085b2a0f743ca04cec0f7be26443738779d09302e01318f97bdb82121"},
+  "nx": {:hex, :nx, "0.4.2", "444e9cc1b1e95edf8c9d9d9f22635349a0cd60cb6a07d4954f3016b2d6d178d7", [:mix], [{:complex, "~> 0.4.3", [hex: :complex, repo: "hexpm", optional: false]}], "hexpm", "9d8f110cf733c4bbc86f0a5fe08f6537e106c39bbcb6dfabc7ef33f14f12edb3"},
 }

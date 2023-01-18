@@ -12,3 +12,4 @@ An elixir answer to the Server programming challenge from [https://protohackers.
 - 5 Mob in the Middle
 - 6 Speed Daemon
 - 7 Line Reversal
+- 8 Insecure Sockets Layer
