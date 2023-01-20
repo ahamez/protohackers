@@ -4,12 +4,13 @@ An elixir answer to the Server programming challenge from [https://protohackers.
 
 # Problems solved
 
-- 0 Smoke Test
-- 1 Prime Time
-- 2 Means to an End
-- 3 Budget Chat
-- 4 Unusual Database Program
-- 5 Mob in the Middle
-- 6 Speed Daemon
-- 7 Line Reversal
-- 8 Insecure Sockets Layer
+-  0 Smoke Test
+-  1 Prime Time
+-  2 Means to an End
+-  3 Budget Chat
+-  4 Unusual Database Program
+-  5 Mob in the Middle
+-  6 Speed Daemon
+-  7 Line Reversal
+-  8 Insecure Sockets Layer
+- 10 Voracious Code Storage

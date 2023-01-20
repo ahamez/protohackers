@@ -5,7 +5,7 @@ if config_env() == :prod do
     level: :info
 end
 
-server = Insecure
+server = Vcs
 
 if server == LineReversal do
   config :logger, :console,
